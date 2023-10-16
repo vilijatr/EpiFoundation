@@ -1,3 +1,8 @@
+using EPiServer.Cms.Shell.Json.Internal;
+using EPiServer.Cms.Shell.UI.ObjectEditing.EditorDescriptors;
+using Foundation.Infrastructure.Cms;
+using Newtonsoft.Json;
+
 namespace Foundation.Features.Home
 {
     [ContentType(DisplayName = "Home Page",
@@ -17,5 +22,10 @@ namespace Foundation.Features.Home
         [Display(Name = "Bottom content area", GroupName = SystemTabNames.Content, Order = 210)]
         [AllowedTypes(new[] { typeof(IContentData) })]
         public virtual ContentArea BottomContentArea { get; set; }
+
+        [BackingType(typeof(PropertySocialMediaIcons))]
+        [EditorDescriptor(EditorDescriptorType = typeof(CollectionEditorDescriptor<SocialMediaIcon>))]
+        [Display(Name = "Social media icon links", Order = 122)]
+        public virtual IList<SocialMediaIcon> SocialMediaIcons { get; set; }
     }
 }
